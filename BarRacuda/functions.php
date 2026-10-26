@@ -25,6 +25,9 @@
     }
     add_action('wp_enqueue_scripts', 'my_theme_scripts');
 
+    // Habilitar imágenes destacadas
+    add_theme_support( 'post-thumbnails' );
+
 
     /**
      * funcion para obetener url de las template terciarias, obteniendo el id
