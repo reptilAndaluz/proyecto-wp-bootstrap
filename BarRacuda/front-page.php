@@ -533,29 +533,27 @@
                         <!--Empieza bucle-->
                         <?php
                             $args = array(
-                                'post_per_page' => 3,
+                                'posts_per_page' => 3,
                             );
                             $last_posts = new WP_Query($args);
                             if($last_posts->have_posts()):
                                 while($last_posts->have_posts()):
                                     $last_posts->the_post();
-
-                            
                         ?>
 
                                     <div class="col-md-4 post-item">
 
                                         <!-- Post-->
                                         <article class="post">
-                                            <div class="post-preview"><a href="#"><img src="<?php echo bloginfo('template_directory'); ?>/assets/images/menu/4.jpg" alt=""></a></div>
+                                            <div class="post-preview"><a href="<?php the_permalink(); ?>"><?php the_post_thumbnail(); ?></a></div>
                                             <div class="post-wrapper">
                                                 <div class="post-header">
-                                                    <h2 class="post-title display-1"><a href="blog-single-1.html">Which Lamb is the Best: American, Australian or New Zealand?</a></h2>
+                                                    <h2 class="post-title display-1"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
                                                 </div>
                                                 <div class="post-content">
-                                                    <p>See how your users experience your website in realtime or view trends to see any changes in performance over time...</p>
+                                                    <?php the_excerpt(); ?>
                                                 </div>
-                                                <div class="post-more"><a href="#">read more...</a></div>
+                                                <div class="post-more"><a href="<?php the_permalink(); ?>">read more...</a></div>
                                             </div>
                                         </article>
                                         <!-- Post end-->
@@ -564,14 +562,11 @@
                         <!--Termina bucle-->
                         <?php
                                 endwhile;
+                                wp_reset_postdata();
                             else:
                                 echo "No posts published yet...";
                             endif;
                         ?>
-
-						<div class="col-md-4 post-item">
-
-						
 					</div>
 					<div class="row">
 						<div class="col-md-12">
